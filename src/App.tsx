@@ -547,13 +547,13 @@ function App() {
                           {position.period}
                         </span>
                       </div>
-                      {company.positions.length === 1 && (
+                      {company.positions?.length === 1 && (
                         <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
                           {company.company}
                         </p>
                       )}
                       <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                        {position.responsibilities.map(
+                        {position?.responsibilities?.map(
                           (responsibility: string, respIndex: number) => (
                             <li
                               key={respIndex}

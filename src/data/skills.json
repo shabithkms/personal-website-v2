@@ -12,9 +12,10 @@
     "category": "Backend",
     "items": [
       "Node.js",
-      "Python",
       "PostgreSQL",
-      "MongoDB"
+      "MongoDB",
+      "Redis",
+      "RabbitMQ"
     ]
   },
   {
@@ -29,10 +30,12 @@
   {
     "category": "Other",
     "items": [
+      "Mongoose",
+      "Prisma",
+      "GraphQL",
       "UI/UX Design",
       "Agile",
-      "REST APIs",
-      "GraphQL"
+      "REST APIs"
     ]
   }
 ]

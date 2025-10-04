@@ -1,11 +1,11 @@
 [
     {
         "company": "Iotics",
-        "duration": "2020 - Present",
+        "duration": "March 2022 - Present",
         "positions": [
             {
                 "title": "Senior Software Developer",
-                "period": "2022 - Present",
+                "period": "March 2024 - Present",
                 "responsibilities": [
                     "Led development of scalable web applications serving 100K+ users",
                     "Architected microservices infrastructure using Node.js and Docker",
@@ -14,7 +14,7 @@
             },
             {
                 "title": "Software Developer",
-                "period": "2020 - 2022",
+                "period": "March 2022 - March 2024",
                 "responsibilities": [
                     "Developed responsive web applications using React and TypeScript",
                     "Implemented RESTful APIs and integrated third-party services",
@@ -24,32 +24,12 @@
         ]
     },
     {
-        "company": "Digital Solutions Ltd.",
-        "duration": "2020 - 2022",
+        "company": "Brototype",
+        "duration": "September 2021 - March 2022",
         "positions": [
             {
-                "title": "Full Stack Developer",
-                "period": "2020 - 2022",
-                "responsibilities": [
-                    "Developed responsive web applications using React and TypeScript",
-                    "Implemented RESTful APIs and integrated third-party services",
-                    "Improved application performance by 40% through optimization"
-                ]
-            }
-        ]
-    },
-    {
-        "company": "Startup Innovations",
-        "duration": "2018 - 2020",
-        "positions": [
-            {
-                "title": "Junior Developer",
-                "period": "2018 - 2020",
-                "responsibilities": [
-                    "Built and maintained client websites using modern web technologies",
-                    "Collaborated with design team to implement pixel-perfect UIs",
-                    "Participated in agile development processes and daily standups"
-                ]
+                "title": "Full Stack Developer(Intern)",
+                "period": "September 2021 - March 2022"
             }
         ]
     }
