@@ -514,7 +514,7 @@ function App() {
                   <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
 
                   {/* Company Header - Only show if multiple positions */}
-                  {company.positions.length > 1 && (
+                  {company.positions.length >= 1 && (
                     <div className="mb-4">
                       <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
                         {company.company}
@@ -543,15 +543,17 @@ function App() {
                         >
                           {position.title}
                         </h4>
-                        <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
-                          {position.period}
-                        </span>
+                        {company.positions?.length > 1 && (
+                          <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
+                            {position.period}
+                          </span>
+                        )}
                       </div>
-                      {company.positions?.length === 1 && (
+                      {/* {company.positions?.length === 1 && (
                         <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
                           {company.company}
                         </p>
-                      )}
+                      )} */}
                       <ul className="space-y-2 text-slate-600 dark:text-slate-400">
                         {position?.responsibilities?.map(
                           (responsibility: string, respIndex: number) => (
