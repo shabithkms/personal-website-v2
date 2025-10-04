@@ -18,15 +18,19 @@ import {
 } from "lucide-react";
 
 // Import data from JSON files
-import profileData from './data/profile.json';
-import aboutData from './data/about.json';
-import experienceData from './data/experience.json';
-import skillsData from './data/skills.json';
-import projectsData from './data/projects.json';
-import socialData from './data/social.json';
+import profileData from "./data/profile.json";
+import aboutData from "./data/about.json";
+import experienceData from "./data/experience.json";
+import skillsData from "./data/skills.json";
+import projectsData from "./data/projects.json";
+import socialData from "./data/social.json";
 
 // Skill Card Component with mouse tracking
-function SkillCard({ skillGroup }: { skillGroup: { category: string; items: string[] } }) {
+function SkillCard({
+  skillGroup,
+}: {
+  skillGroup: { category: string; items: string[] };
+}) {
   const [cardMouse, setCardMouse] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -48,12 +52,13 @@ function SkillCard({ skillGroup }: { skillGroup: { category: string; items: stri
         <div
           className="absolute rounded-full pointer-events-none transition-opacity duration-300"
           style={{
-            width: '300px',
-            height: '300px',
+            width: "300px",
+            height: "300px",
             left: `${cardMouse.x}px`,
             top: `${cardMouse.y}px`,
-            transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%)',
+            transform: "translate(-50%, -50%)",
+            background:
+              "radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%)",
           }}
         />
       )}
@@ -86,12 +91,12 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Check localStorage or system preference
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('darkMode');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("darkMode");
       if (saved !== null) {
-        return saved === 'true';
+        return saved === "true";
       }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
     return false;
   });
@@ -99,12 +104,12 @@ function App() {
   useEffect(() => {
     // Apply dark mode class to html element
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
     // Save preference to localStorage
-    localStorage.setItem('darkMode', isDarkMode.toString());
+    localStorage.setItem("darkMode", isDarkMode.toString());
   }, [isDarkMode]);
 
   // Mouse tracking for parallax effect
@@ -113,8 +118,8 @@ function App() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const toggleDarkMode = () => {
@@ -171,27 +176,39 @@ function App() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              {[
-                "home",
-                "about",
-                "experience",
-                "skills",
-                "projects",
-                "contact",
-              ].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-colors ${
-                    activeSection === item
-                      ? "text-primary-600 dark:text-primary-400"
-                      : "text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400"
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
-              
+              {["home", "about", "experience", "skills", "projects", "contact"]
+                .filter((item) => {
+                  switch (item) {
+                    case "home":
+                      return true; // Always show home
+                    case "about":
+                      return aboutData.paragraphs.length > 0;
+                    case "experience":
+                      return experienceData.length > 0;
+                    case "skills":
+                      return skillsData.length > 0;
+                    case "projects":
+                      return projectsData.length > 0;
+                    case "contact":
+                      return socialData.length > 0;
+                    default:
+                      return false;
+                  }
+                })
+                .map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className={`capitalize transition-colors ${
+                      activeSection === item
+                        ? "text-primary-600 dark:text-primary-400"
+                        : "text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
+
               {/* Dark Mode Toggle - Desktop */}
               <button
                 onClick={toggleDarkMode}
@@ -199,9 +216,15 @@ function App() {
                 aria-label="Toggle dark mode"
               >
                 {isDarkMode ? (
-                  <Sun size={20} className="text-slate-600 dark:text-slate-300" />
+                  <Sun
+                    size={20}
+                    className="text-slate-600 dark:text-slate-300"
+                  />
                 ) : (
-                  <Moon size={20} className="text-slate-600 dark:text-slate-300" />
+                  <Moon
+                    size={20}
+                    className="text-slate-600 dark:text-slate-300"
+                  />
                 )}
               </button>
             </div>
@@ -214,9 +237,15 @@ function App() {
                 aria-label="Toggle dark mode"
               >
                 {isDarkMode ? (
-                  <Sun size={20} className="text-slate-600 dark:text-slate-300" />
+                  <Sun
+                    size={20}
+                    className="text-slate-600 dark:text-slate-300"
+                  />
                 ) : (
-                  <Moon size={20} className="text-slate-600 dark:text-slate-300" />
+                  <Moon
+                    size={20}
+                    className="text-slate-600 dark:text-slate-300"
+                  />
                 )}
               </button>
               <button
@@ -227,7 +256,10 @@ function App() {
                 {isMenuOpen ? (
                   <X size={24} className="text-slate-600 dark:text-slate-300" />
                 ) : (
-                  <Menu size={24} className="text-slate-600 dark:text-slate-300" />
+                  <Menu
+                    size={24}
+                    className="text-slate-600 dark:text-slate-300"
+                  />
                 )}
               </button>
             </div>
@@ -238,22 +270,34 @@ function App() {
         {isMenuOpen && (
           <div className="md:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800">
             <div className="px-4 py-4 space-y-3">
-              {[
-                "home",
-                "about",
-                "experience",
-                "skills",
-                "projects",
-                "contact",
-              ].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block w-full text-left capitalize py-2 text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400"
-                >
-                  {item}
-                </button>
-              ))}
+              {["home", "about", "experience", "skills", "projects", "contact"]
+                .filter((item) => {
+                  switch (item) {
+                    case "home":
+                      return true; // Always show home
+                    case "about":
+                      return aboutData.paragraphs.length > 0;
+                    case "experience":
+                      return experienceData.length > 0;
+                    case "skills":
+                      return skillsData.length > 0;
+                    case "projects":
+                      return projectsData.length > 0;
+                    case "contact":
+                      return socialData.length > 0;
+                    default:
+                      return false;
+                  }
+                })
+                .map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className="block w-full text-left capitalize py-2 text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400"
+                  >
+                    {item}
+                  </button>
+                ))}
             </div>
           </div>
         )}
@@ -265,7 +309,7 @@ function App() {
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
       >
         {/* Mouse Follower Effect */}
-        <div 
+        <div
           className="absolute w-96 h-96 bg-gradient-to-r from-primary-400/20 to-blue-400/20 dark:from-primary-600/10 dark:to-blue-600/10 rounded-full blur-3xl pointer-events-none transition-all duration-1000 ease-out"
           style={{
             left: `${mousePosition.x - 192}px`,
@@ -275,19 +319,23 @@ function App() {
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div 
+          <div
             className="absolute top-20 left-10 w-72 h-72 bg-primary-200/20 dark:bg-primary-500/10 rounded-full blur-3xl animate-float"
             style={{
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-              transition: 'transform 0.3s ease-out'
+              transform: `translate(${mousePosition.x * 0.02}px, ${
+                mousePosition.y * 0.02
+              }px)`,
+              transition: "transform 0.3s ease-out",
             }}
           ></div>
-          <div 
-            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-float" 
-            style={{ 
-              animationDelay: '1s',
-              transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * -0.015}px)`,
-              transition: 'transform 0.3s ease-out'
+          <div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-float"
+            style={{
+              animationDelay: "1s",
+              transform: `translate(${mousePosition.x * -0.015}px, ${
+                mousePosition.y * -0.015
+              }px)`,
+              transition: "transform 0.3s ease-out",
             }}
           ></div>
         </div>
@@ -303,17 +351,26 @@ function App() {
           </div>
 
           {/* Name with Fade In Down */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white animate-fade-in-down" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+          <h1
+            className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white animate-fade-in-down"
+            style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+          >
             {profileData.name}
           </h1>
 
           {/* Title with Fade In Up */}
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+          <p
+            className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-fade-in-up"
+            style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+          >
             {profileData.title}
           </p>
 
           {/* Description with Fade In Up */}
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
+          <p
+            className="text-lg text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto animate-fade-in-up"
+            style={{ animationDelay: "0.6s", animationFillMode: "both" }}
+          >
             {profileData.description}
           </p>
 
@@ -322,29 +379,49 @@ function App() {
             <a
               href="#contact"
               className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 animate-slide-in-left"
-              style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
+              style={{ animationDelay: "0.8s", animationFillMode: "both" }}
             >
               Get In Touch
             </a>
             <a
               href="#projects"
               className="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all hover:scale-105 animate-slide-in-right"
-              style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
+              style={{ animationDelay: "0.8s", animationFillMode: "both" }}
             >
               View Work
             </a>
           </div>
 
           {/* Social Icons with Fade In */}
-          <div className="flex justify-center gap-6 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
+          <div
+            className="flex justify-center gap-6 animate-fade-in"
+            style={{ animationDelay: "1s", animationFillMode: "both" }}
+          >
             {socialData.map((social: any, index: number) => {
-              const IconComponent = social.icon === 'Github' ? Github : social.icon === 'Linkedin' ? Linkedin : social.icon === 'Instagram' ? Instagram : social.icon === 'Mail' ? Mail : Phone;
+              const IconComponent =
+                social.icon === "Github"
+                  ? Github
+                  : social.icon === "Linkedin"
+                  ? Linkedin
+                  : social.icon === "Instagram"
+                  ? Instagram
+                  : social.icon === "Mail"
+                  ? Mail
+                  : Phone;
               return (
                 <a
                   key={index}
                   href={social.url}
-                  target={social.icon !== 'Mail' && social.icon !== 'Phone' ? '_blank' : undefined}
-                  rel={social.icon !== 'Mail' && social.icon !== 'Phone' ? 'noopener noreferrer' : undefined}
+                  target={
+                    social.icon !== "Mail" && social.icon !== "Phone"
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    social.icon !== "Mail" && social.icon !== "Phone"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                   className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                   aria-label={social.ariaLabel}
                 >
@@ -360,214 +437,268 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section
-        id="about"
-        className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
-      >
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
-            About Me
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              {aboutData.paragraphs.map((paragraph: string, index: number) => (
-                <p key={index} className="text-lg text-slate-600 dark:text-slate-300">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <div className="space-y-4">
-              {aboutData.highlights.map((highlight: any, index: number) => {
-                const IconComponent = highlight.icon === 'Code2' ? Code2 : highlight.icon === 'Briefcase' ? Briefcase : GraduationCap;
-                return (
-                  <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                    <IconComponent className="text-primary-600 mt-1" size={24} />
-                    <div>
-                      <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                        {highlight.title}
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300">
-                        {highlight.description}
-                      </p>
+      {aboutData.paragraphs.length > 0 && (
+        <section
+          id="about"
+          className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
+        >
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
+              About Me
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                {aboutData.paragraphs.map(
+                  (paragraph: string, index: number) => (
+                    <p
+                      key={index}
+                      className="text-lg text-slate-600 dark:text-slate-300"
+                    >
+                      {paragraph}
+                    </p>
+                  )
+                )}
+              </div>
+              <div className="space-y-4">
+                {aboutData.highlights.map((highlight: any, index: number) => {
+                  const IconComponent =
+                    highlight.icon === "Code2"
+                      ? Code2
+                      : highlight.icon === "Briefcase"
+                      ? Briefcase
+                      : GraduationCap;
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50"
+                    >
+                      <IconComponent
+                        className="text-primary-600 mt-1"
+                        size={24}
+                      />
+                      <div>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+                          {highlight.title}
+                        </h3>
+                        <p className="text-slate-600 dark:text-slate-300">
+                          {highlight.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Experience Section */}
-      <section
-        id="experience"
-        className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
-      >
-        <div className="max-w-4xl mx-auto w-full">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
-            Experience
-          </h2>
-          <div className="space-y-8">
-            {experienceData.map((company: any, companyIndex: number) => (
-              <div 
-                key={companyIndex} 
-                className={`relative pl-8 ${companyIndex < experienceData.length - 1 ? 'pb-8' : ''} border-l-2 border-primary-600`}
-              >
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+      {experienceData.length > 0 && (
+        <section
+          id="experience"
+          className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
+        >
+          <div className="max-w-4xl mx-auto w-full">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
+              Experience
+            </h2>
+            <div className="space-y-8">
+              {experienceData.map((company: any, companyIndex: number) => (
+                <div
+                  key={companyIndex}
+                  className={`relative pl-8 ${
+                    companyIndex < experienceData.length - 1 ? "pb-8" : ""
+                  } border-l-2 border-primary-600`}
+                >
+                  <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
 
-                {/* Company Header - Only show if multiple positions */}
-                {company.positions.length > 1 && (
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                      {company.company}
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-400">
-                      {company.duration}
-                    </p>
-                  </div>
-                )}
-
-                {/* Positions */}
-                {company.positions.map((position: any, posIndex: number) => (
-                  <div 
-                    key={posIndex}
-                    className={`bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow ${
-                      posIndex < company.positions.length - 1 ? 'mb-4' : ''
-                    }`}
-                  >
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                      <h4 className={`${company.positions.length > 1 ? 'text-xl' : 'text-2xl'} font-semibold text-slate-900 dark:text-white`}>
-                        {position.title}
-                      </h4>
-                      <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
-                        {position.period}
-                      </span>
-                    </div>
-                    {company.positions.length === 1 && (
-                      <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
+                  {/* Company Header - Only show if multiple positions */}
+                  {company.positions.length > 1 && (
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
                         {company.company}
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-400">
+                        {company.duration}
                       </p>
-                    )}
-                    <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                      {position.responsibilities.map((responsibility: string, respIndex: number) => (
-                        <li key={respIndex} className="flex items-start gap-2">
-                          <span className="text-primary-600 mt-1">•</span>
-                          <span>{responsibility}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                    </div>
+                  )}
 
-      {/* Skills Section */}
-      <section
-        id="skills"
-        className="min-h-screen flex items-center justify-center px-4 py-20"
-      >
-        <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
-            Skills & Technologies
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillsData.map((skillGroup: any, index: number) => (
-              <SkillCard key={index} skillGroup={skillGroup} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section
-        id="projects"
-        className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
-      >
-        <div className="max-w-6xl mx-auto w-full">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
-            Featured Projects
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projectsData.map((project: any, index: number) => (
-              <div
-                key={index}
-                className="group p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <h3 className="text-2xl font-semibold mb-3 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech: string, idx: number) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
+                  {/* Positions */}
+                  {company.positions.map((position: any, posIndex: number) => (
+                    <div
+                      key={posIndex}
+                      className={`bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow ${
+                        posIndex < company.positions.length - 1 ? "mb-4" : ""
+                      }`}
                     >
-                      {tech}
-                    </span>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                        <h4
+                          className={`${
+                            company.positions.length > 1
+                              ? "text-xl"
+                              : "text-2xl"
+                          } font-semibold text-slate-900 dark:text-white`}
+                        >
+                          {position.title}
+                        </h4>
+                        <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
+                          {position.period}
+                        </span>
+                      </div>
+                      {company.positions.length === 1 && (
+                        <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
+                          {company.company}
+                        </p>
+                      )}
+                      <ul className="space-y-2 text-slate-600 dark:text-slate-400">
+                        {position.responsibilities.map(
+                          (responsibility: string, respIndex: number) => (
+                            <li
+                              key={respIndex}
+                              className="flex items-start gap-2"
+                            >
+                              <span className="text-primary-600 mt-1">•</span>
+                              <span>{responsibility}</span>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:gap-3 transition-all"
-                >
-                  View Project <ExternalLink size={16} />
-                </a>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Skills Section */}
+      {skillsData.length > 0 && (
+        <section
+          id="skills"
+          className="min-h-screen flex items-center justify-center px-4 py-20"
+        >
+          <div className="max-w-6xl mx-auto w-full">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
+              Skills & Technologies
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skillsData.map((skillGroup: any, index: number) => (
+                <SkillCard key={index} skillGroup={skillGroup} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Projects Section */}
+      {projectsData.length > 0 && (
+        <section
+          id="projects"
+          className="min-h-screen flex items-center justify-center px-4 py-20 bg-white dark:bg-slate-900/50"
+        >
+          <div className="max-w-6xl mx-auto w-full">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 dark:text-white">
+              Featured Projects
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projectsData.map((project: any, index: number) => (
+                <div
+                  key={index}
+                  className="group p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                >
+                  <h3 className="text-2xl font-semibold mb-3 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech: string, idx: number) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:gap-3 transition-all"
+                  >
+                    View Project <ExternalLink size={16} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        className="min-h-screen flex items-center justify-center px-4 py-20"
-      >
-        <div className="max-w-2xl mx-auto w-full text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
-            Let's Work Together
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your vision.
-          </p>
-          <div className="space-y-6">
-            {socialData.filter((s: any) => s.icon === 'Mail').map((social: any, index: number) => (
-              <a
-                key={index}
-                href={social.url}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl text-lg"
-              >
-                <Mail size={24} />
-                Send me an email
-              </a>
-            ))}
-            <div className="flex justify-center gap-4 pt-8">
-              {socialData.filter((s: any) => s.icon !== 'Mail').map((social: any, index: number) => {
-                const IconComponent = social.icon === 'Github' ? Github : social.icon === 'Linkedin' ? Linkedin : social.icon === 'Instagram' ? Instagram : Phone;
-                return (
+      {socialData.length > 0 && (
+        <section
+          id="contact"
+          className="min-h-screen flex items-center justify-center px-4 py-20"
+        >
+          <div className="max-w-2xl mx-auto w-full text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
+              Let's Work Together
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-12">
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision.
+            </p>
+            <div className="space-y-6">
+              {socialData
+                .filter((s: any) => s.icon === "Mail")
+                .map((social: any, index: number) => (
                   <a
                     key={index}
                     href={social.url}
-                    target={social.icon !== 'Phone' ? '_blank' : undefined}
-                    rel={social.icon !== 'Phone' ? 'noopener noreferrer' : undefined}
-                    className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                    aria-label={social.ariaLabel}
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl text-lg"
                   >
-                    <IconComponent size={28} />
+                    <Mail size={24} />
+                    Send me an email
                   </a>
-                );
-              })}
+                ))}
+              <div className="flex justify-center gap-4 pt-8">
+                {socialData
+                  .filter((s: any) => s.icon !== "Mail")
+                  .map((social: any, index: number) => {
+                    const IconComponent =
+                      social.icon === "Github"
+                        ? Github
+                        : social.icon === "Linkedin"
+                        ? Linkedin
+                        : social.icon === "Instagram"
+                        ? Instagram
+                        : Phone;
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target={social.icon !== "Phone" ? "_blank" : undefined}
+                        rel={
+                          social.icon !== "Phone"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                        aria-label={social.ariaLabel}
+                      >
+                        <IconComponent size={28} />
+                      </a>
+                    );
+                  })}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 py-8">

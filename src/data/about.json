@@ -1,23 +1,23 @@
 {
-  "paragraphs": [
-    "I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I bring ideas to life through clean, efficient code.",
-    "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community."
-  ],
-  "highlights": [
-    {
-      "icon": "Code2",
-      "title": "Development",
-      "description": "Building scalable web applications with modern frameworks and best practices."
-    },
-    {
-      "icon": "Briefcase",
-      "title": "Experience",
-      "description": "Delivering high-quality solutions for clients across various industries."
-    },
-    {
-      "icon": "GraduationCap",
-      "title": "Learning",
-      "description": "Continuously expanding my skillset and staying current with industry trends."
-    }
-  ]
+    "paragraphs": [
+        "I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I bring ideas to life through clean, efficient code.",
+        "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community."
+    ],
+    "highlights": [
+        {
+            "icon": "Code2",
+            "title": "Development",
+            "description": "Building scalable web applications with modern frameworks and best practices."
+        },
+        {
+            "icon": "Briefcase",
+            "title": "Experience",
+            "description": "Delivering high-quality solutions for clients across various industries."
+        },
+        {
+            "icon": "GraduationCap",
+            "title": "Learning",
+            "description": "Continuously expanding my skillset and staying current with industry trends."
+        }
+    ]
 }

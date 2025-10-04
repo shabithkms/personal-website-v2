@@ -1,32 +1,32 @@
 [
-  {
-    "name": "GitHub",
-    "icon": "Github",
-    "url": "https://github.com/shabitkms",
-    "ariaLabel": "GitHub"
-  },
-  {
-    "name": "LinkedIn",
-    "icon": "Linkedin",
-    "url": "https://linkedin.com/in/shabitkms",
-    "ariaLabel": "LinkedIn"
-  },
-  {
-    "name": "Instagram",
-    "icon": "Instagram",
-    "url": "https://instagram.com/shabitkms",
-    "ariaLabel": "Instagram"
-  },
-  {
-    "name": "Email",
-    "icon": "Mail",
-    "url": "mailto:shabithkmuhammed@gmail.com",
-    "ariaLabel": "Email"
-  },
-  {
-    "name": "Phone",
-    "icon": "Phone",
-    "url": "tel:+917025259794",
-    "ariaLabel": "Phone"
-  }
+    {
+        "name": "GitHub",
+        "icon": "Github",
+        "url": "https://github.com/shabitkms",
+        "ariaLabel": "GitHub"
+    },
+    {
+        "name": "LinkedIn",
+        "icon": "Linkedin",
+        "url": "https://linkedin.com/in/shabitkms",
+        "ariaLabel": "LinkedIn"
+    },
+    {
+        "name": "Instagram",
+        "icon": "Instagram",
+        "url": "https://instagram.com/shabitkms",
+        "ariaLabel": "Instagram"
+    },
+    {
+        "name": "Email",
+        "icon": "Mail",
+        "url": "mailto:shabithkmuhammed@gmail.com",
+        "ariaLabel": "Email"
+    },
+    {
+        "name": "Phone",
+        "icon": "Phone",
+        "url": "tel:+917025259794",
+        "ariaLabel": "Phone"
+    }
 ]

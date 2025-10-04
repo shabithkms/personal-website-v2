@@ -1,18 +1,38 @@
 [
   {
     "category": "Frontend",
-    "items": ["React", "TypeScript", "TailwindCSS", "Next.js"]
+    "items": [
+      "React",
+      "TypeScript",
+      "TailwindCSS",
+      "Next.js"
+    ]
   },
   {
     "category": "Backend",
-    "items": ["Node.js", "Python", "PostgreSQL", "MongoDB"]
+    "items": [
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "MongoDB"
+    ]
   },
   {
     "category": "Tools",
-    "items": ["Git", "Docker", "AWS", "VS Code"]
+    "items": [
+      "Git",
+      "Docker",
+      "AWS",
+      "VS Code"
+    ]
   },
   {
     "category": "Other",
-    "items": ["UI/UX Design", "Agile", "REST APIs", "GraphQL"]
+    "items": [
+      "UI/UX Design",
+      "Agile",
+      "REST APIs",
+      "GraphQL"
+    ]
   }
 ]

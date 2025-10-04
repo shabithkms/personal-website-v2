@@ -52,6 +52,7 @@ npm run preview
 To personalize this website for yourself:
 
 1. **Update personal information** in `src/App.tsx`:
+
    - Name, title, and description in the Hero section
    - About section content
    - Skills array
@@ -59,6 +60,7 @@ To personalize this website for yourself:
    - Social media links (GitHub, LinkedIn, Email)
 
 2. **Update meta tags** in `index.html`:
+
    - Title and description
 
 3. **Customize colors** in `tailwind.config.js`:
