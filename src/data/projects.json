@@ -1,0 +1,20 @@
+[
+  {
+    "title": "E-Commerce Platform",
+    "description": "A full-stack e-commerce solution with payment integration and real-time inventory management.",
+    "tech": ["React", "Node.js", "MongoDB", "Stripe"],
+    "link": "#"
+  },
+  {
+    "title": "Task Management App",
+    "description": "Collaborative task management tool with real-time updates and team collaboration features.",
+    "tech": ["Next.js", "TypeScript", "PostgreSQL", "WebSockets"],
+    "link": "#"
+  },
+  {
+    "title": "AI Content Generator",
+    "description": "AI-powered content generation tool using modern LLM APIs for creative writing assistance.",
+    "tech": ["React", "Python", "OpenAI API", "FastAPI"],
+    "link": "#"
+  }
+]

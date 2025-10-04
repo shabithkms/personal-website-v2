@@ -17,10 +17,73 @@ import {
   ArrowUp,
 } from "lucide-react";
 
+// Import data from JSON files
+import profileData from './data/profile.json';
+import aboutData from './data/about.json';
+import experienceData from './data/experience.json';
+import skillsData from './data/skills.json';
+import projectsData from './data/projects.json';
+import socialData from './data/social.json';
+
+// Skill Card Component with mouse tracking
+function SkillCard({ skillGroup }: { skillGroup: { category: string; items: string[] } }) {
+  const [cardMouse, setCardMouse] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="group p-6 rounded-xl bg-white dark:bg-slate-800/50 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden border border-transparent hover:border-primary-500/20"
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        setCardMouse({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Mouse spotlight effect */}
+      {isHovered && (
+        <div
+          className="absolute rounded-full pointer-events-none transition-opacity duration-300"
+          style={{
+            width: '300px',
+            height: '300px',
+            left: `${cardMouse.x}px`,
+            top: `${cardMouse.y}px`,
+            transform: 'translate(-50%, -50%)',
+            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%)',
+          }}
+        />
+      )}
+
+      <div className="relative z-10">
+        <h3 className="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400 group-hover:scale-105 transition-transform duration-300">
+          {skillGroup.category}
+        </h3>
+        <ul className="space-y-2">
+          {skillGroup.items.map((skill, idx) => (
+            <li
+              key={idx}
+              className="text-slate-600 dark:text-slate-300 flex items-center gap-2 group-hover:translate-x-1 transition-all duration-300"
+              style={{ transitionDelay: `${idx * 50}ms` }}
+            >
+              <span className="w-2 h-2 bg-primary-600 rounded-full group-hover:scale-150 transition-transform duration-300"></span>
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Check localStorage or system preference
     if (typeof window !== 'undefined') {
@@ -43,6 +106,16 @@ function App() {
     // Save preference to localStorage
     localStorage.setItem('darkMode', isDarkMode.toString());
   }, [isDarkMode]);
+
+  // Mouse tracking for parallax effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -87,46 +160,6 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const skills = [
-    {
-      category: "Frontend",
-      items: ["React", "TypeScript", "TailwindCSS", "Next.js"],
-    },
-    {
-      category: "Backend",
-      items: ["Node.js", "Python", "PostgreSQL", "MongoDB"],
-    },
-    { category: "Tools", items: ["Git", "Docker", "AWS", "VS Code"] },
-    {
-      category: "Other",
-      items: ["UI/UX Design", "Agile", "REST APIs", "GraphQL"],
-    },
-  ];
-
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "A full-stack e-commerce solution with payment integration and real-time inventory management.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "Collaborative task management tool with real-time updates and team collaboration features.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL", "WebSockets"],
-      link: "#",
-    },
-    {
-      title: "AI Content Generator",
-      description:
-        "AI-powered content generation tool using modern LLM APIs for creative writing assistance.",
-      tech: ["React", "Python", "OpenAI API", "FastAPI"],
-      link: "#",
-    },
-  ];
 
   return (
     <div className="min-h-screen">
@@ -229,83 +262,96 @@ function App() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4 pt-16"
+        className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <div className="mb-6">
+        {/* Mouse Follower Effect */}
+        <div 
+          className="absolute w-96 h-96 bg-gradient-to-r from-primary-400/20 to-blue-400/20 dark:from-primary-600/10 dark:to-blue-600/10 rounded-full blur-3xl pointer-events-none transition-all duration-1000 ease-out"
+          style={{
+            left: `${mousePosition.x - 192}px`,
+            top: `${mousePosition.y - 192}px`,
+          }}
+        ></div>
+
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-20 left-10 w-72 h-72 bg-primary-200/20 dark:bg-primary-500/10 rounded-full blur-3xl animate-float"
+            style={{
+              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
+              transition: 'transform 0.3s ease-out'
+            }}
+          ></div>
+          <div 
+            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-float" 
+            style={{ 
+              animationDelay: '1s',
+              transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * -0.015}px)`,
+              transition: 'transform 0.3s ease-out'
+            }}
+          ></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          {/* Profile Image with Scale Animation */}
+          <div className="mb-6 animate-scale-in">
             <img
-              src="/profile.jpeg"
-              alt="Muhammed Shabith K"
-              className="w-32 h-32 mx-auto mb-6 rounded-full object-cover shadow-2xl animate-float ring-4 ring-primary-500/20"
+              src={profileData.profileImage}
+              alt={profileData.name}
+              className="w-32 h-32 mx-auto mb-6 rounded-full object-cover shadow-2xl animate-float ring-4 ring-primary-500/20 hover:ring-8 hover:ring-primary-500/30 transition-all duration-300"
             />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white">
-            Muhammed Shabith K
+
+          {/* Name with Fade In Down */}
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white animate-fade-in-down" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+            {profileData.name}
           </h1>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8">
-            Full Stack Developer & Creative Problem Solver
+
+          {/* Title with Fade In Up */}
+          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+            {profileData.title}
           </p>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
-            Passionate about building beautiful, functional web applications
-            that make a difference. Specializing in modern web technologies and
-            user-centric design.
+
+          {/* Description with Fade In Up */}
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
+            {profileData.description}
           </p>
+
+          {/* Buttons with Slide Animations */}
           <div className="flex justify-center gap-4 mb-12">
             <a
               href="#contact"
-              className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 animate-slide-in-left"
+              style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
             >
               Get In Touch
             </a>
             <a
               href="#projects"
-              className="px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+              className="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all hover:scale-105 animate-slide-in-right"
+              style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
             >
               View Work
             </a>
           </div>
-          <div className="flex justify-center gap-6">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              aria-label="GitHub"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram size={24} />
-            </a>
-            <a
-              href="mailto:your.email@example.com"
-              className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              aria-label="Email"
-            >
-              <Mail size={24} />
-            </a>
-            <a
-              href="tel:+919876543210"
-              className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-              aria-label="Phone"
-            >
-              <Phone size={24} />
-            </a>
+
+          {/* Social Icons with Fade In */}
+          <div className="flex justify-center gap-6 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
+            {socialData.map((social: any, index: number) => {
+              const IconComponent = social.icon === 'Github' ? Github : social.icon === 'Linkedin' ? Linkedin : social.icon === 'Instagram' ? Instagram : social.icon === 'Mail' ? Mail : Phone;
+              return (
+                <a
+                  key={index}
+                  href={social.url}
+                  target={social.icon !== 'Mail' && social.icon !== 'Phone' ? '_blank' : undefined}
+                  rel={social.icon !== 'Mail' && social.icon !== 'Phone' ? 'noopener noreferrer' : undefined}
+                  className="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  aria-label={social.ariaLabel}
+                >
+                  <IconComponent size={24} />
+                </a>
+              );
+            })}
           </div>
           <div className="mt-16 animate-bounce">
             <ChevronDown size={32} className="mx-auto text-slate-400" />
@@ -324,55 +370,29 @@ function App() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <p className="text-lg text-slate-600 dark:text-slate-300">
-                I'm a passionate full-stack developer with a keen eye for design
-                and a love for creating seamless user experiences. With
-                expertise in modern web technologies, I bring ideas to life
-                through clean, efficient code.
-              </p>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
-                When I'm not coding, you'll find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
-              </p>
+              {aboutData.paragraphs.map((paragraph: string, index: number) => (
+                <p key={index} className="text-lg text-slate-600 dark:text-slate-300">
+                  {paragraph}
+                </p>
+              ))}
             </div>
             <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                <Code2 className="text-primary-600 mt-1" size={24} />
-                <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                    Development
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    Building scalable web applications with modern frameworks
-                    and best practices.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                <Briefcase className="text-primary-600 mt-1" size={24} />
-                <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                    Experience
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    Delivering high-quality solutions for clients across various
-                    industries.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                <GraduationCap className="text-primary-600 mt-1" size={24} />
-                <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                    Learning
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    Continuously expanding my skillset and staying current with
-                    industry trends.
-                  </p>
-                </div>
-              </div>
+              {aboutData.highlights.map((highlight: any, index: number) => {
+                const IconComponent = highlight.icon === 'Code2' ? Code2 : highlight.icon === 'Briefcase' ? Briefcase : GraduationCap;
+                return (
+                  <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                    <IconComponent className="text-primary-600 mt-1" size={24} />
+                    <div>
+                      <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+                        {highlight.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300">
+                        {highlight.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -388,171 +408,58 @@ function App() {
             Experience
           </h2>
           <div className="space-y-8">
-            {/* Experience Item 1 - Current Company with Multiple Positions */}
-            <div className="relative pl-8 pb-8 border-l-2 border-primary-600">
-              <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+            {experienceData.map((company: any, companyIndex: number) => (
+              <div 
+                key={companyIndex} 
+                className={`relative pl-8 ${companyIndex < experienceData.length - 1 ? 'pb-8' : ''} border-l-2 border-primary-600`}
+              >
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
 
-              {/* Company Header */}
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-                  Iotics
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  2020 - Present
-                </p>
-              </div>
+                {/* Company Header - Only show if multiple positions */}
+                {company.positions.length > 1 && (
+                  <div className="mb-4">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                      {company.company}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      {company.duration}
+                    </p>
+                  </div>
+                )}
 
-              {/* Position 1 - Senior Software Developer */}
-              <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow mb-4">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                  <h4 className="text-xl font-semibold text-slate-900 dark:text-white">
-                    Senior Software Developer
-                  </h4>
-                  <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
-                    2022 - Present
-                  </span>
-                </div>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Led development of scalable web applications serving 100K+
-                      users
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Architected microservices infrastructure using Node.js and
-                      Docker
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Mentored junior developers and conducted code reviews
-                    </span>
-                  </li>
-                </ul>
+                {/* Positions */}
+                {company.positions.map((position: any, posIndex: number) => (
+                  <div 
+                    key={posIndex}
+                    className={`bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow ${
+                      posIndex < company.positions.length - 1 ? 'mb-4' : ''
+                    }`}
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                      <h4 className={`${company.positions.length > 1 ? 'text-xl' : 'text-2xl'} font-semibold text-slate-900 dark:text-white`}>
+                        {position.title}
+                      </h4>
+                      <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
+                        {position.period}
+                      </span>
+                    </div>
+                    {company.positions.length === 1 && (
+                      <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
+                        {company.company}
+                      </p>
+                    )}
+                    <ul className="space-y-2 text-slate-600 dark:text-slate-400">
+                      {position.responsibilities.map((responsibility: string, respIndex: number) => (
+                        <li key={respIndex} className="flex items-start gap-2">
+                          <span className="text-primary-600 mt-1">•</span>
+                          <span>{responsibility}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-
-              {/* Position 2 - Software Developer */}
-              <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                  <h4 className="text-xl font-semibold text-slate-900 dark:text-white">
-                    Software Developer
-                  </h4>
-                  <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">
-                    2020 - 2022
-                  </span>
-                </div>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Developed responsive web applications using React and
-                      TypeScript
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Implemented RESTful APIs and integrated third-party
-                      services
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Collaborated with cross-functional teams on feature
-                      development
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Experience Item 2 */}
-            <div className="relative pl-8 pb-8 border-l-2 border-primary-600">
-              <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
-              <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                  <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
-                    Full Stack Developer
-                  </h3>
-                  <span className="text-primary-600 dark:text-primary-400 font-medium">
-                    2020 - 2022
-                  </span>
-                </div>
-                <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
-                  Digital Solutions Ltd.
-                </p>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Developed responsive web applications using React and
-                      TypeScript
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Implemented RESTful APIs and integrated third-party
-                      services
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Improved application performance by 40% through
-                      optimization
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Experience Item 3 */}
-            <div className="relative pl-8">
-              <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
-              <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                  <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
-                    Junior Developer
-                  </h3>
-                  <span className="text-primary-600 dark:text-primary-400 font-medium">
-                    2018 - 2020
-                  </span>
-                </div>
-                <p className="text-lg text-slate-700 dark:text-slate-300 mb-3">
-                  Startup Innovations
-                </p>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Built and maintained client websites using modern web
-                      technologies
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Collaborated with design team to implement pixel-perfect
-                      UIs
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary-600 mt-1">•</span>
-                    <span>
-                      Participated in agile development processes and daily
-                      standups
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -567,26 +474,8 @@ function App() {
             Skills & Technologies
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-xl bg-white dark:bg-slate-800/50 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <h3 className="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
-                  {skillGroup.category}
-                </h3>
-                <ul className="space-y-2">
-                  {skillGroup.items.map((skill, idx) => (
-                    <li
-                      key={idx}
-                      className="text-slate-600 dark:text-slate-300 flex items-center gap-2"
-                    >
-                      <span className="w-2 h-2 bg-primary-600 rounded-full"></span>
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {skillsData.map((skillGroup: any, index: number) => (
+              <SkillCard key={index} skillGroup={skillGroup} />
             ))}
           </div>
         </div>
@@ -602,7 +491,7 @@ function App() {
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {projectsData.map((project: any, index: number) => (
               <div
                 key={index}
                 className="group p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
@@ -614,7 +503,7 @@ function App() {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, idx) => (
+                  {project.tech.map((tech: string, idx: number) => (
                     <span
                       key={idx}
                       className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
@@ -649,48 +538,32 @@ function App() {
             opportunities to be part of your vision.
           </p>
           <div className="space-y-6">
-            <a
-              href="mailto:your.email@example.com"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl text-lg"
-            >
-              <Mail size={24} />
-              Send me an email
-            </a>
+            {socialData.filter((s: any) => s.icon === 'Mail').map((social: any, index: number) => (
+              <a
+                key={index}
+                href={social.url}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl text-lg"
+              >
+                <Mail size={24} />
+                Send me an email
+              </a>
+            ))}
             <div className="flex justify-center gap-4 pt-8">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={28} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={28} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={28} />
-              </a>
-              <a
-                href="tel:+919876543210"
-                className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                aria-label="Phone"
-              >
-                <Phone size={28} />
-              </a>
+              {socialData.filter((s: any) => s.icon !== 'Mail').map((social: any, index: number) => {
+                const IconComponent = social.icon === 'Github' ? Github : social.icon === 'Linkedin' ? Linkedin : social.icon === 'Instagram' ? Instagram : Phone;
+                return (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target={social.icon !== 'Phone' ? '_blank' : undefined}
+                    rel={social.icon !== 'Phone' ? 'noopener noreferrer' : undefined}
+                    className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    aria-label={social.ariaLabel}
+                  >
+                    <IconComponent size={28} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

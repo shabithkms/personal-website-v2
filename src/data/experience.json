@@ -1,0 +1,56 @@
+[
+    {
+        "company": "Iotics",
+        "duration": "2020 - Present",
+        "positions": [
+            {
+                "title": "Senior Software Developer",
+                "period": "2022 - Present",
+                "responsibilities": [
+                    "Led development of scalable web applications serving 100K+ users",
+                    "Architected microservices infrastructure using Node.js and Docker",
+                    "Mentored junior developers and conducted code reviews"
+                ]
+            },
+            {
+                "title": "Software Developer",
+                "period": "2020 - 2022",
+                "responsibilities": [
+                    "Developed responsive web applications using React and TypeScript",
+                    "Implemented RESTful APIs and integrated third-party services",
+                    "Collaborated with cross-functional teams on feature development"
+                ]
+            }
+        ]
+    },
+    {
+        "company": "Digital Solutions Ltd.",
+        "duration": "2020 - 2022",
+        "positions": [
+            {
+                "title": "Full Stack Developer",
+                "period": "2020 - 2022",
+                "responsibilities": [
+                    "Developed responsive web applications using React and TypeScript",
+                    "Implemented RESTful APIs and integrated third-party services",
+                    "Improved application performance by 40% through optimization"
+                ]
+            }
+        ]
+    },
+    {
+        "company": "Startup Innovations",
+        "duration": "2018 - 2020",
+        "positions": [
+            {
+                "title": "Junior Developer",
+                "period": "2018 - 2020",
+                "responsibilities": [
+                    "Built and maintained client websites using modern web technologies",
+                    "Collaborated with design team to implement pixel-perfect UIs",
+                    "Participated in agile development processes and daily standups"
+                ]
+            }
+        ]
+    }
+]
