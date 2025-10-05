@@ -306,7 +306,7 @@ function App() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-4 pt-20 md:pt-16 relative overflow-hidden"
       >
         {/* Mouse Follower Effect */}
         <div
