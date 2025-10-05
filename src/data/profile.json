@@ -1,6 +1,11 @@
 {
   "name": "Muhammed Shabith K",
-  "title": "Full Stack Developer & Creative Problem Solver",
-  "description": "Passionate about building beautiful, functional web applications that make a difference. Specializing in modern web technologies and user-centric design.",
-  "profileImage": "/profile.jpeg"
+  "title": "Backend Developer & API Architect",
+  "description": "Backend Developer with 3+ years of experience building high-performance APIs, scalable server-side applications, and cloud-based backend systems. Specialized in Node.js, TypeScript, PostgreSQL, MongoDB, Docker, and AWS.",
+  "profileImage": "/profile.webp",
+  "location": "Kerala, India",
+  "email": "shabithkmuhammed@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/shabithkms",
+  "github": "https://github.com/shabithkms",
+  "twitter": "@mhdshabith"
 }

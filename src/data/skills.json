@@ -1,41 +1,62 @@
 [
   {
-    "category": "Frontend",
+    "category": "Backend Frameworks & Technologies",
     "items": [
-      "React",
-      "TypeScript",
-      "TailwindCSS",
-      "Next.js"
+      "Node.js",
+      "Express.js",
+      "Fastify",
+      "GraphQL",
+      "gRPC",
+      "REST APIs",
+      "WebSockets",
+      "BullMQ (Redis Queues)",
+      "Microservices Architecture"
     ]
   },
   {
-    "category": "Backend",
+    "category": "Databases & ORMs",
     "items": [
-      "Node.js",
       "PostgreSQL",
       "MongoDB",
       "Redis",
-      "RabbitMQ"
+      "Prisma ORM",
+      "Mongoose"
     ]
   },
   {
-    "category": "Tools",
+    "category": "Cloud & DevOps",
     "items": [
-      "Git",
+      "AWS (EC2, S3, Route 53)",
       "Docker",
-      "AWS",
-      "VS Code"
+      "NGINX",
+      "CI/CD (GitHub Actions)",
+      "PM2",
+      "Linux Server Management"
     ]
   },
   {
-    "category": "Other",
+    "category": "Frontend Frameworks & Libraries",
     "items": [
-      "Mongoose",
-      "Prisma",
-      "GraphQL",
-      "UI/UX Design",
-      "Agile",
-      "REST APIs"
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ]
+  },
+  {
+    "category": "Tools & Utilities",
+    "items": [
+      "Git & GitHub",
+      "Postman",
+      "Vercel"
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "items": [
+      "JavaScript",
+      "TypeScript",
+      "Python (Basic)"
     ]
   }
 ]

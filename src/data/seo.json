@@ -1,8 +1,11 @@
 {
-    "title": "Muhammed Shabith K - Full Stack Developer",
-    "description": "Full Stack Developer specializing in React, TypeScript, Node.js, and modern web technologies. Building beautiful, functional web applications.",
-    "keywords": "Full Stack Developer, React Developer, TypeScript, Node.js, Web Developer, Software Engineer, Muhammed Shabith K",
+    "title": "Muhammed Shabith K — Backend Developer & API Architect",
+    "description": "Backend Developer with 3+ years of experience specializing in Node.js, PostgreSQL, and scalable system architecture. I design high-performance APIs, microservices, and cloud-based backend systems using modern technologies like AWS, Docker, and Prisma.",
+    "keywords": "Backend Developer, Node.js Developer, API Architect, Microservices, REST API, GraphQL, PostgreSQL, MongoDB, AWS, Docker, Prisma ORM, System Architecture, Cloud Backend Developer",
     "author": "Muhammed Shabith K",
-    "ogImage": "/profile.jpeg",
-    "twitterHandle": "@shabitkms"
+    "ogTitle": "Muhammed Shabith K — Backend Developer & API Architect",
+    "ogDescription": "Designing high-performance APIs and scalable backends with Node.js, PostgreSQL, and AWS. Explore my work and backend projects.",
+    "ogImage": "/profile.webp",
+    "twitterHandle": "@mhdshabith",
+    "twitterCard": "summary_large_image"
 }

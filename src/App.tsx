@@ -383,13 +383,16 @@ function App() {
             >
               Get In Touch
             </a>
-            <a
-              href="#projects"
-              className="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all hover:scale-105 animate-slide-in-right"
-              style={{ animationDelay: "0.8s", animationFillMode: "both" }}
-            >
-              View Work
-            </a>
+            {/* Only show if projects section exists */}
+            {projectsData.length > 0 && (
+              <a
+                href="#projects"
+                className="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all hover:scale-105 animate-slide-in-right"
+                style={{ animationDelay: "0.8s", animationFillMode: "both" }}
+              >
+                View Work
+              </a>
+            )}
           </div>
 
           {/* Social Icons with Fade In */}

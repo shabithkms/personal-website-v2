@@ -1,23 +1,23 @@
 {
     "paragraphs": [
-        "I'm a passionate full-stack developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I bring ideas to life through clean, efficient code.",
-        "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community."
+        "I'm a passionate backend developer specializing in designing and implementing scalable, high-performance server-side applications. I build efficient APIs, robust databases, and reliable backend systems that power modern web and mobile applications.",
+        "I follow clean architecture principles and performance optimization strategies, ensuring applications can scale seamlessly while maintaining maintainable, high-quality code and system reliability."
     ],
     "highlights": [
         {
             "icon": "Code2",
-            "title": "Development",
-            "description": "Building scalable web applications with modern frameworks and best practices."
+            "title": "Backend Development",
+            "description": "Developing scalable and performant server-side applications using Node.js, TypeScript, Python, and modern frameworks like Express and Fastify."
         },
         {
             "icon": "Briefcase",
-            "title": "Experience",
-            "description": "Delivering high-quality solutions for clients across various industries."
+            "title": "API Design & Microservices",
+            "description": "Designing well-structured RESTful and GraphQL APIs with proper documentation, testing, and microservices architecture for scalable backend systems."
         },
         {
             "icon": "GraduationCap",
-            "title": "Learning",
-            "description": "Continuously expanding my skillset and staying current with industry trends."
+            "title": "System Architecture & Cloud",
+            "description": "Building scalable databases, microservices, and cloud infrastructure (AWS, Docker) for enterprise-grade applications."
         }
     ]
 }

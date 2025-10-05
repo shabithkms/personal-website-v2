@@ -7,18 +7,18 @@
                 "title": "Senior Software Developer",
                 "period": "March 2024 - Present",
                 "responsibilities": [
-                    "Led development of scalable web applications serving 100K+ users",
-                    "Architected microservices infrastructure using Node.js and Docker",
-                    "Mentored junior developers and conducted code reviews"
+                    "Led development of scalable web applications serving 100K+ users with high performance and reliability",
+                    "Architected microservices infrastructure using Node.js, Docker, and Redis for enterprise-grade applications",
+                    "Mentored junior developers, conducted code reviews, and improved team engineering practices"
                 ]
             },
             {
                 "title": "Software Developer",
                 "period": "March 2022 - March 2024",
                 "responsibilities": [
-                    "Developed responsive web applications using React and TypeScript",
-                    "Implemented RESTful APIs and integrated third-party services",
-                    "Collaborated with cross-functional teams on feature development"
+                    "Developed responsive web applications using React, Next.js, and TypeScript",
+                    "Designed and implemented RESTful APIs and integrated third-party services",
+                    "Collaborated with cross-functional teams to deliver features efficiently and maintain high code quality"
                 ]
             }
         ]
@@ -28,8 +28,13 @@
         "duration": "September 2021 - March 2022",
         "positions": [
             {
-                "title": "Full Stack Developer(Intern)",
-                "period": "September 2021 - March 2022"
+                "title": "Full Stack Developer (Intern)",
+                "period": "September 2021 - March 2022",
+                "responsibilities": [
+                    "Built e-commerce platform using MERN stack, delivering a fully functional MVP",
+                    "Implemented RESTful APIs and integrated third-party services for seamless functionality",
+                    "Worked closely with cross-functional teams to implement features and fix bugs"
+                ]
             }
         ]
     }
