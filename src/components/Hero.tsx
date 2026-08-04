@@ -7,6 +7,7 @@ import {
   Mail,
   Phone,
   ArrowRight,
+  Download,
   Server,
   Sparkles,
   CheckCircle2,
@@ -127,6 +128,17 @@ export const Hero: React.FC = () => {
                 >
                   <span>View Experience</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a
+                  href={profileData.resumeUrl || "/resume.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download Resume"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-slate-900/90 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-semibold hover:bg-cyan-500/10 hover:border-cyan-500 shadow-sm transition-all duration-300"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Resume</span>
                 </a>
 
                 <a
