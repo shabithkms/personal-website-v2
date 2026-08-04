@@ -67,25 +67,15 @@ export const Hero: React.FC = () => {
               <span>Available for Freelance Projects & Roles</span>
             </motion.div>
 
-            {/* Main Title */}
+            {/* Main Title - Immediate Paint for Sub-1-Second LCP */}
             <div className="space-y-2">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-slate-600 dark:text-slate-400 font-semibold text-lg tracking-wide uppercase"
-              >
+              <h2 className="text-slate-600 dark:text-slate-400 font-semibold text-lg tracking-wide uppercase">
                 Hello, I'm {profileData.name}
-              </motion.h2>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight leading-none"
-              >
+              </h2>
+              <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight leading-none">
                 Building Scalable <br />
                 <span className="text-gradient">Backend Systems</span> & APIs
-              </motion.h1>
+              </h1>
             </div>
 
             {/* Bio Paragraph */}
