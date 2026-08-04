@@ -5,7 +5,7 @@ import { Hero } from "./components/Hero";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { ComponentSkeleton } from "./components/SkeletonLoader";
 
-// Lazy load heavy below-the-fold components to reduce initial JS payload from 410KB -> 30KB
+// Lazy load heavy below-the-fold components to reduce initial JS payload
 const ParticleBackground = lazy(() =>
   import("./components/ParticleBackground").then((m) => ({ default: m.ParticleBackground }))
 );
@@ -15,9 +15,6 @@ const Experience = lazy(() =>
   import("./components/Experience").then((m) => ({ default: m.Experience }))
 );
 const Projects = lazy(() => import("./components/Projects").then((m) => ({ default: m.Projects })));
-const TerminalPlayground = lazy(() =>
-  import("./components/TerminalPlayground").then((m) => ({ default: m.TerminalPlayground }))
-);
 const Contact = lazy(() => import("./components/Contact").then((m) => ({ default: m.Contact })));
 const Footer = lazy(() => import("./components/Footer").then((m) => ({ default: m.Footer })));
 
@@ -46,7 +43,7 @@ function App() {
   // Observer for active section scrolling highlight
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "skills", "experience", "projects", "playground", "contact"];
+      const sections = ["home", "about", "skills", "experience", "projects", "contact"];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -84,7 +81,7 @@ function App() {
         setIsDarkMode={setIsDarkMode}
       />
 
-      {/* Critical Above-the-fold Hero Renders Instantly (Sub-Second FCP & LCP) */}
+      {/* Critical Above-the-fold Hero Renders Instantly */}
       <main className="relative z-10 space-y-4">
         <Hero />
 
@@ -103,10 +100,6 @@ function App() {
 
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>
           <Projects />
-        </Suspense>
-
-        <Suspense fallback={<ComponentSkeleton height="h-80" />}>
-          <TerminalPlayground />
         </Suspense>
 
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>

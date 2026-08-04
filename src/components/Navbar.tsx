@@ -48,7 +48,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       href: "#projects",
       show: Boolean(projectsData && projectsData.length > 0),
     },
-    { name: "API Console", href: "#playground", show: true },
     { name: "Contact", href: "#contact", show: true },
   ].filter((link) => link.show);
 
