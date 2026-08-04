@@ -34,7 +34,7 @@ export const Skills: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
           className="text-center space-y-3 mb-12"
         >
           <h2 className="text-xs sm:text-sm font-semibold tracking-widest text-cyan-600 dark:text-cyan-400 uppercase">
@@ -66,7 +66,7 @@ export const Skills: React.FC = () => {
               onClick={() => setActiveCategory(cat)}
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors duration-200 ${
                 activeCategory === cat
                   ? "bg-cyan-500 text-white dark:text-slate-950 font-bold shadow-lg shadow-cyan-500/25"
@@ -88,7 +88,7 @@ export const Skills: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ type: "spring", stiffness: 130, damping: 18, delay: groupIdx * 0.08 }}
+                transition={{ type: "spring" as const, stiffness: 130, damping: 18, delay: groupIdx * 0.08 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group p-6 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/40 backdrop-blur-xl shadow-md hover:shadow-2xl hover:shadow-cyan-950/20 transition-all duration-300 relative overflow-hidden"
               >
@@ -106,7 +106,7 @@ export const Skills: React.FC = () => {
                     <motion.span
                       key={itemIdx}
                       whileHover={{ scale: 1.08 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                      transition={{ type: "spring" as const, stiffness: 400, damping: 20 }}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800/80 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-300 transition-all duration-200 cursor-default"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />

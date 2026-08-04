@@ -5,7 +5,6 @@ import profileData from "../data/profile.json";
 import skillsData from "../data/skills.json";
 import projectsData from "../data/projects.json";
 import experienceData from "../data/experience.json";
-import aboutData from "../data/about.json";
 
 export const TerminalPlayground: React.FC = () => {
   const hasProfile = Boolean(profileData && (profileData.name || profileData.description));

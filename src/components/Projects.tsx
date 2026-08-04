@@ -3,8 +3,22 @@ import { motion } from "framer-motion";
 import { Github, Activity, ArrowUpRight } from "lucide-react";
 import projectsData from "../data/projects.json";
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  live?: string;
+  featured?: boolean;
+  metrics?: string;
+  category: string;
+}
+
+const typedProjectsData = projectsData as Project[];
+
 export const Projects: React.FC = () => {
-  if (!projectsData || projectsData.length === 0) {
+  if (!typedProjectsData || typedProjectsData.length === 0) {
     return null;
   }
 
@@ -14,8 +28,8 @@ export const Projects: React.FC = () => {
 
   const filteredProjects =
     selectedCategory === "All"
-      ? projectsData
-      : projectsData.filter((p) => p.category === selectedCategory);
+      ? typedProjectsData
+      : typedProjectsData.filter((p) => p.category === selectedCategory);
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-slate-100/60 dark:bg-slate-950/60">

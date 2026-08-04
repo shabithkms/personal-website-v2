@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <motion.div
                     layoutId="activeNavTab"
                     className="absolute inset-0 bg-slate-100 dark:bg-slate-800/90 rounded-full -z-10 border border-cyan-500/30"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    transition={{ type: "spring" as const, stiffness: 380, damping: 30 }}
                   />
                 )}
                 {link.name}

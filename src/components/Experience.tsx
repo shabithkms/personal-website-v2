@@ -15,7 +15,7 @@ export const Experience: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
           className="text-center space-y-3 mb-16"
         >
           <h2 className="text-xs sm:text-sm font-semibold tracking-widest text-cyan-600 dark:text-cyan-400 uppercase">
@@ -51,7 +51,7 @@ export const Experience: React.FC = () => {
                 initial={{ opacity: 0, y: 50, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ type: "spring", stiffness: 110, damping: 22, delay: expIdx * 0.15 }}
+                transition={{ type: "spring" as const, stiffness: 110, damping: 22, delay: expIdx * 0.15 }}
                 className="relative flex flex-col md:flex-row items-start"
               >
                 {/* Timeline Dot */}
@@ -68,7 +68,7 @@ export const Experience: React.FC = () => {
                 <div className={`w-full md:w-1/2 pl-12 md:pl-0 ${expIdx % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto"}`}>
                   <motion.div
                     whileHover={{ y: -6, scale: 1.01 }}
-                    transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    transition={{ type: "spring" as const, stiffness: 350, damping: 25 }}
                     className="p-7 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/40 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-950/20 transition-all duration-300 group"
                   >
                     {/* Header */}

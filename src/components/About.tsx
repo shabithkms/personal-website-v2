@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Code2, Briefcase, GraduationCap, Server, Database, ShieldCheck, Zap } from "lucide-react";
 import aboutData from "../data/about.json";
 
@@ -14,7 +14,7 @@ export const About: React.FC = () => {
     GraduationCap: <GraduationCap className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />,
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -24,13 +24,13 @@ export const About: React.FC = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 20 },
+      transition: { type: "spring" as const, stiffness: 120, damping: 20 },
     },
   };
 
@@ -42,7 +42,7 @@ export const About: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
           className="text-center space-y-3 mb-16"
         >
           <h2 className="text-xs sm:text-sm font-semibold tracking-widest text-cyan-600 dark:text-cyan-400 uppercase">
@@ -72,7 +72,7 @@ export const About: React.FC = () => {
           <motion.div variants={itemVariants} className="lg:col-span-6 space-y-6">
             <motion.div
               whileHover={{ y: -6, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
               className="p-8 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-xl shadow-xl relative"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -120,7 +120,7 @@ export const About: React.FC = () => {
                 variants={itemVariants}
                 whileHover={{ y: -6, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                transition={{ type: "spring" as const, stiffness: 350, damping: 25 }}
                 className="group p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/40 backdrop-blur-md shadow-md hover:shadow-2xl hover:shadow-cyan-950/20 transition-all duration-300 relative overflow-hidden"
               >
                 <div className="flex items-start gap-4">

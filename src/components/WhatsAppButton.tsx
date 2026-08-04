@@ -32,7 +32,7 @@ export const WhatsAppButton: React.FC = () => {
         title="Chat on WhatsApp"
         initial={{ opacity: 0, scale: 0.5, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.5 }}
+        transition={{ type: "spring" as const, stiffness: 200, damping: 20, delay: 0.5 }}
         whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.95 }}
         className="group flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all duration-300 border border-emerald-300/40 cursor-pointer"
