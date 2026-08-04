@@ -1,35 +1,72 @@
 [
   {
-    "title": "E-Commerce Platform",
-    "description": "A full-stack e-commerce solution with payment integration and real-time inventory management.",
+    "id": "tics-cms",
+    "title": "Enterprise Content & Payment CMS Engine",
+    "description": "High-throughput CMS and payment processing platform engineered with Node.js, TypeScript, PostgreSQL, and Redis. Features automated transaction webhooks, role-based access control, and distributed queue processing.",
+    "tech": [
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "Express"
+    ],
+    "github": "https://github.com/shabithkms",
+    "live": "#",
+    "featured": true,
+    "metrics": "100K+ Users • 99.99% Uptime",
+    "category": "Backend System"
+  },
+  {
+    "id": "microservice-api-gateway",
+    "title": "Distributed Microservice API Gateway",
+    "description": "Lightweight high-performance API gateway with rate-limiting, JWT authentication middleware, dynamic service discovery, and Prometheus metrics tracking.",
+    "tech": [
+      "Node.js",
+      "Fastify",
+      "Docker",
+      "Redis",
+      "JWT",
+      "Prometheus"
+    ],
+    "github": "https://github.com/shabithkms",
+    "live": "#",
+    "featured": true,
+    "metrics": "Sub-10ms Overhead",
+    "category": "Architecture"
+  },
+  {
+    "id": "realtime-analytics-pipeline",
+    "title": "Real-time Event Streaming Pipeline",
+    "description": "Scalable event-driven system built with Kafka and Node.js to ingest, transform, and aggregate user activity metrics in real-time.",
+    "tech": [
+      "TypeScript",
+      "Kafka",
+      "MongoDB",
+      "WebSockets",
+      "AWS EC2"
+    ],
+    "github": "https://github.com/shabithkms",
+    "live": "#",
+    "featured": true,
+    "metrics": "10K req/sec Ingestion",
+    "category": "Data Engineering"
+  },
+  {
+    "id": "ecommerce-mvp-platform",
+    "title": "Full-Stack E-Commerce Engine",
+    "description": "Scalable full-stack e-commerce architecture with real-time inventory locking, Stripe payment gateway, and administrative management dashboard.",
     "tech": [
       "React",
       "Node.js",
       "MongoDB",
-      "Stripe"
+      "Stripe API",
+      "Tailwind CSS"
     ],
-    "link": "#"
-  },
-  {
-    "title": "Task Management App",
-    "description": "Collaborative task management tool with real-time updates and team collaboration features.",
-    "tech": [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "WebSockets"
-    ],
-    "link": "#"
-  },
-  {
-    "title": "AI Content Generator",
-    "description": "AI-powered content generation tool using modern LLM APIs for creative writing assistance.",
-    "tech": [
-      "React",
-      "Python",
-      "OpenAI API",
-      "FastAPI"
-    ],
-    "link": "#"
+    "github": "https://github.com/shabithkms",
+    "live": "#",
+    "featured": false,
+    "metrics": "Full Checkout Workflow",
+    "category": "Full Stack"
   }
 ]

@@ -1,0 +1,24 @@
+# Muhammed Shabith K - Backend Developer & API Architect
+
+> Senior Backend Developer & API Architect with 4+ years of experience specializing in high-throughput microservices, REST & GraphQL APIs, Node.js, TypeScript, PostgreSQL, MongoDB, Redis, Docker, and AWS cloud infrastructure.
+
+## Key Developer Profile
+- **Name**: Muhammed Shabith K
+- **Role**: Senior Software Developer / API Architect
+- **Experience**: 4+ Years (2022 - Present)
+- **Email**: shabithkmuhammed@gmail.com
+- **Phone / WhatsApp**: +91 7025259794
+- **GitHub**: https://github.com/shabithkms
+- **LinkedIn**: https://www.linkedin.com/in/shabithkms
+- **Location**: Kerala, India
+
+## Technical Stack & Expertise
+- **Core Languages**: JavaScript, TypeScript, Python
+- **Backend & Frameworks**: Node.js, Express.js, Fastify, GraphQL, gRPC, REST APIs, WebSockets, Microservices
+- **Databases & Caching**: PostgreSQL, MongoDB, Redis, Prisma ORM, Mongoose
+- **Cloud & DevOps**: AWS (EC2, S3, Route 53), Docker, NGINX, GitHub Actions CI/CD, PM2, Linux Management
+
+## Career Milestones
+- **Senior Software Developer @ Iotics** (March 2024 - Present): Led high-throughput API development serving 100K+ users; architected microservices infrastructure with Docker and Redis.
+- **Software Developer @ Iotics** (March 2022 - March 2024): Designed REST APIs, engineered database schemas, and delivered full-stack scalable web solutions.
+- **Full Stack Developer Intern @ Brototype** (Sept 2021 - March 2022): Built MERN e-commerce platforms and payment integrations.
