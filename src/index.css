@@ -46,6 +46,10 @@
   .glow-emerald {
     box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
   }
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 600px;
+  }
 }
 
 @keyframes pulseGlow {

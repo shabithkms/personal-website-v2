@@ -66,6 +66,7 @@ export const Footer: React.FC = () => {
 
           <button
             onClick={scrollToTop}
+            aria-label="Scroll back to top of page"
             className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all flex items-center gap-1.5 font-medium"
             title="Scroll to top"
           >

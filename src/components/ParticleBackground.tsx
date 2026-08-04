@@ -4,6 +4,11 @@ export const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    // Check if user prefers reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -12,6 +17,9 @@ export const ParticleBackground: React.FC = () => {
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+
+    const isMobile = width < 768;
+    if (isMobile) return;
 
     const handleResize = () => {
       if (!canvas) return;
@@ -32,17 +40,18 @@ export const ParticleBackground: React.FC = () => {
     }> = [];
 
     const colors = ["#0ea5e9", "#38bdf8", "#6366f1", "#14b8a6"];
-    const particleCount = Math.min(Math.floor(width / 20), 65);
+    // Significantly reduce particle count on mobile for 60fps performance
+    const particleCount = isMobile ? 15 : Math.min(Math.floor(width / 25), 50);
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
         radius: Math.random() * 2 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.5 + 0.2,
+        alpha: Math.random() * 0.4 + 0.2,
       });
     }
 
@@ -51,12 +60,14 @@ export const ParticleBackground: React.FC = () => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
-    window.addEventListener("mousemove", handleMouseMove);
+
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw particle nodes & connections
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.x += p.vx;
@@ -65,13 +76,14 @@ export const ParticleBackground: React.FC = () => {
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Mouse repulsion / subtle magnet
-        const dxMouse = mouse.x - p.x;
-        const dyMouse = mouse.y - p.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        if (distMouse < 120) {
-          p.x -= (dxMouse / distMouse) * 0.8;
-          p.y -= (dyMouse / distMouse) * 0.8;
+        if (!isMobile) {
+          const dxMouse = mouse.x - p.x;
+          const dyMouse = mouse.y - p.y;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          if (distMouse < 100) {
+            p.x -= (dxMouse / distMouse) * 0.6;
+            p.y -= (dyMouse / distMouse) * 0.6;
+          }
         }
 
         ctx.beginPath();
@@ -87,13 +99,14 @@ export const ParticleBackground: React.FC = () => {
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
+          const maxDist = isMobile ? 90 : 120;
+          if (dist < maxDist) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = p.color;
-            ctx.globalAlpha = (1 - dist / 130) * 0.15;
-            ctx.lineWidth = 0.8;
+            ctx.globalAlpha = (1 - dist / maxDist) * 0.12;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -107,7 +120,7 @@ export const ParticleBackground: React.FC = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
+      if (!isMobile) window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -115,7 +128,7 @@ export const ParticleBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-60"
+      className="fixed inset-0 pointer-events-none z-0 opacity-50 hidden sm:block"
     />
   );
 };

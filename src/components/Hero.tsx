@@ -41,8 +41,8 @@ export const Hero: React.FC = () => {
       className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden"
     >
       {/* Ambient Glow Orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="hidden sm:block absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none animate-pulse-glow" />
+      <div className="hidden sm:block absolute bottom-10 right-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Available for Senior Backend & API Engineering Roles</span>
+              <span>Available for Freelance Projects & Roles</span>
             </motion.div>
 
             {/* Main Title */}
@@ -103,30 +103,22 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="grid grid-cols-3 gap-3 pt-2 max-w-xl"
+              className="grid grid-cols-2 gap-3 pt-2 max-w-md"
             >
               <div className="p-3 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 text-center shadow-sm">
                 <div className="text-xl font-bold text-cyan-600 dark:text-cyan-400">
                   4+ Years
                 </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                  Experience
+                  Backend Experience
                 </div>
               </div>
               <div className="p-3 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 text-center shadow-sm">
                 <div className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-                  100K+
+                  Senior Dev
                 </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                  Active Users
-                </div>
-              </div>
-              <div className="p-3 rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 text-center shadow-sm">
-                <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
-                  99.99%
-                </div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                  API Reliability
+                  API & Microservices
                 </div>
               </div>
             </motion.div>

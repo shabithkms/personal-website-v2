@@ -99,7 +99,7 @@ export const Contact: React.FC = () => {
                 Have a project or opportunity?
               </h4>
               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                I am actively looking for Senior Backend Developer & API Architect roles. Feel free to drop a message or reach out directly!
+                I am available for freelance projects, technical consulting, and senior backend development roles. Feel free to drop a message or reach out directly!
               </p>
 
               {/* Email Pill with Copy */}

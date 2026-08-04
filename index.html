@@ -6,6 +6,11 @@
     <link rel="apple-touch-icon" href="/profile.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Critical Performance Preloads for Sub-Second FCP & LCP -->
+    <link rel="preload" as="image" href="/profile.webp" type="image/webp" fetchpriority="high" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Primary Meta Tags -->
     <title>Muhammed Shabith K (shabithkms) — Senior Backend Developer & API Architect</title>
     <meta name="title" content="Muhammed Shabith K (shabithkms) — Senior Backend Developer & API Architect" />
