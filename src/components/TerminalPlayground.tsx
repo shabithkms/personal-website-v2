@@ -49,6 +49,15 @@ export const TerminalPlayground: React.FC = () => {
   const answerAiQuestion = (query: string): string => {
     const q = query.toLowerCase();
 
+    if (
+      q.includes("shabithkms") ||
+      q.includes("muhammed shabith") ||
+      q.includes("who is") ||
+      q.includes("shabith") ||
+      q.includes("about")
+    ) {
+      return `🤖 AI Assistant: Muhammed Shabith K (known online as @shabithkms) is a Senior Backend Developer & API Architect with 4+ years of experience. He specializes in Node.js, TypeScript, PostgreSQL, MongoDB, Redis, Docker, and AWS cloud infrastructure. Currently leading backend development at Iotics. Email: ${profileData.email} | WhatsApp: +91 7025259794`;
+    }
     if (q.includes("experience") || q.includes("work") || q.includes("year")) {
       return `🤖 AI Assistant: Muhammed Shabith K has 4+ years of experience in Backend Engineering. Currently a Senior Software Developer at Iotics (March 2024 - Present), previously Software Developer (March 2022 - March 2024), and Full Stack Intern at Brototype.`;
     }
@@ -65,7 +74,7 @@ export const TerminalPlayground: React.FC = () => {
       return `🤖 AI Assistant: Shabith specializes in Node.js, TypeScript, Express, Fastify, GraphQL, REST APIs, Microservices, PostgreSQL, Redis, Docker, and AWS.`;
     }
 
-    return `🤖 AI Assistant: Shabith is a Senior Backend Developer & API Architect with 4+ years of experience building high-throughput microservices and cloud infrastructure. Try asking about "skills", "experience", "databases", "cloud", or "contact".`;
+    return `🤖 AI Assistant: Muhammed Shabith K (@shabithkms) is a Senior Backend Developer & API Architect with 4+ years of experience building high-throughput microservices. Try asking "Who is shabithkms", "skills", "experience", "databases", or "contact".`;
   };
 
   const handleCommand = (cmdStr?: string) => {
@@ -239,11 +248,11 @@ export const TerminalPlayground: React.FC = () => {
               </button>
             )}
             <button
-              onClick={() => handleCommand("ask what databases does Shabith use?")}
-              className="px-2.5 py-1 rounded bg-slate-900 border border-indigo-500/40 text-indigo-300 hover:bg-slate-800 transition-colors flex items-center gap-1"
+              onClick={() => handleCommand("ask Who is shabithkms?")}
+              className="px-2.5 py-1 rounded bg-slate-900 border border-cyan-500/40 text-cyan-300 hover:bg-slate-800 transition-colors flex items-center gap-1"
             >
               <Sparkles className="w-3 h-3 text-cyan-400" />
-              <span>ask databases</span>
+              <span>ask Who is shabithkms?</span>
             </button>
             <button
               onClick={() => handleCommand("ping")}
