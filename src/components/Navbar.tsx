@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Terminal, Sun, Moon, Download } from "lucide-react";
+import { Menu, X, Sun, Moon, Download, ArrowUpRight } from "lucide-react";
 import profileData from "../data/profile.json";
 import aboutData from "../data/about.json";
 import skillsData from "../data/skills.json";
@@ -26,20 +26,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks = [
     { name: "Home", href: "#home", show: true },
     {
-      name: "About",
-      href: "#about",
-      show: Boolean(
-        aboutData &&
-          ((aboutData.paragraphs && aboutData.paragraphs.length > 0) ||
-            (aboutData.highlights && aboutData.highlights.length > 0))
-      ),
-    },
-    {
-      name: "Skills",
-      href: "#skills",
-      show: Boolean(skillsData && skillsData.length > 0),
-    },
-    {
       name: "Experience",
       href: "#experience",
       show: Boolean(experienceData && experienceData.length > 0),
@@ -48,6 +34,20 @@ export const Navbar: React.FC<NavbarProps> = ({
       name: "Projects",
       href: "#projects",
       show: Boolean(projectsData && projectsData.length > 0),
+    },
+    {
+      name: "Skills",
+      href: "#skills",
+      show: Boolean(skillsData && skillsData.length > 0),
+    },
+    {
+      name: "About",
+      href: "#about",
+      show: Boolean(
+        aboutData &&
+          ((aboutData.paragraphs && aboutData.paragraphs.length > 0) ||
+            (aboutData.highlights && aboutData.highlights.length > 0))
+      ),
     },
     { name: "Contact", href: "#contact", show: true },
   ].filter((link) => link.show);
@@ -72,13 +72,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 border-b-2 ${
         scrolled
-          ? "py-3 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 shadow-lg dark:shadow-2xl shadow-cyan-950/10"
-          : "py-5 bg-transparent"
+          ? "bg-paper/95 dark:bg-ink/95 backdrop-blur-sm border-ink dark:border-paper"
+          : "bg-paper dark:bg-ink border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
         {/* Brand / Logo */}
         <a
           href="#home"
@@ -86,20 +86,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             e.preventDefault();
             scrollTo("#home");
           }}
-          className="flex items-center gap-2 group cursor-pointer"
+          className="flex items-center gap-2 group cursor-pointer font-mono"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-[1px] shadow-md shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all duration-300">
-            <div className="w-full h-full bg-white dark:bg-slate-950 rounded-[11px] flex items-center justify-center group-hover:bg-slate-100 dark:group-hover:bg-slate-900 transition-colors">
-              <Terminal className="w-5 h-5 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
-            </div>
-          </div>
-          <span className="font-bold text-lg tracking-wider text-slate-900 dark:text-slate-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-            SHABITH<span className="text-cyan-600 dark:text-cyan-400">.DEV</span>
+          <span className="text-xl sm:text-2xl font-bold tracking-tight text-ink dark:text-paper">
+            {"shabith"}
+            <span className="text-accent-dim dark:text-accent bg-ink dark:bg-paper px-0.5">
+              .dev
+            </span>
           </span>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-800/80 shadow-sm">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace("#", "");
             return (
@@ -110,20 +108,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   e.preventDefault();
                   scrollTo(link.href);
                 }}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-full ${
-                  isActive
-                    ? "text-cyan-600 dark:text-cyan-400 font-semibold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
-                }`}
+                className="group relative py-2 font-mono text-sm uppercase tracking-wide text-ink dark:text-paper"
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavTab"
-                    className="absolute inset-0 bg-slate-100 dark:bg-slate-800/90 rounded-full -z-10 border border-cyan-500/30"
-                    transition={{ type: "spring" as const, stiffness: 380, damping: 30 }}
-                  />
-                )}
                 {link.name}
+                <span
+                  className={`absolute left-0 -bottom-0.5 h-[3px] bg-accent transition-all duration-200 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
               </a>
             );
           })}
@@ -135,16 +127,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setIsDarkMode(!isDarkMode)}
             aria-label="Toggle dark mode"
             title="Toggle dark mode"
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500/50 transition-all cursor-pointer"
+            className="press-sm p-2.5 bg-paper dark:bg-ink border-2 border-ink dark:border-paper text-ink dark:text-paper cursor-pointer"
           >
-            {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
           <a
             href={profileData.resumeUrl || "/resume.pdf"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download Resume"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all"
+            className="press-sm hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-mono font-semibold uppercase bg-paper dark:bg-ink border-2 border-ink dark:border-paper text-ink dark:text-paper"
           >
             <Download className="w-4 h-4" />
             <span>Resume</span>
@@ -156,12 +148,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               e.preventDefault();
               scrollTo("#contact");
             }}
-            className="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none"
+            className="press-sm inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-mono font-bold uppercase bg-accent text-ink border-2 border-ink dark:border-paper"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-sky-400 to-indigo-500 rounded-xl group-hover:opacity-90 transition-opacity" />
-            <span className="relative block px-4 py-2 text-sm font-semibold bg-white dark:bg-slate-950 rounded-[11px] text-slate-900 dark:text-slate-100 group-hover:bg-transparent group-hover:text-white transition-all duration-300">
-              Hire Me
-            </span>
+            <span>Hire Me</span>
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
 
@@ -171,15 +161,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setIsDarkMode(!isDarkMode)}
             aria-label="Toggle dark mode"
             title="Toggle dark mode"
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
+            className="p-2 bg-paper dark:bg-ink border-2 border-ink dark:border-paper text-ink dark:text-paper"
           >
-            {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             title="Toggle navigation menu"
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-500"
+            className="p-2 bg-paper dark:bg-ink border-2 border-ink dark:border-paper text-ink dark:text-paper"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -193,9 +183,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-paper dark:bg-ink border-t-2 border-b-2 border-ink dark:border-paper overflow-hidden"
           >
-            <div className="px-4 pt-3 pb-6 space-y-2">
+            <div className="px-4 pt-4 pb-6 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -204,21 +195,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                     e.preventDefault();
                     scrollTo(link.href);
                   }}
-                  className="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900/80 transition-colors"
+                  className="block px-2 py-3 font-mono text-base uppercase tracking-wide text-ink dark:text-paper border-b border-ink/10 dark:border-paper/10"
                 >
                   {link.name}
                 </a>
               ))}
-              <div className="pt-2">
+              <div className="pt-4 flex gap-3">
+                <a
+                  href={profileData.resumeUrl || "/resume.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center py-3 font-mono font-semibold uppercase text-sm border-2 border-ink dark:border-paper text-ink dark:text-paper"
+                >
+                  Resume
+                </a>
                 <a
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault();
                     scrollTo("#contact");
                   }}
-                  className="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white dark:text-slate-950 font-bold shadow-lg shadow-cyan-500/20"
+                  className="flex-1 text-center py-3 font-mono font-bold uppercase text-sm bg-accent text-ink border-2 border-ink"
                 >
-                  Get In Touch
+                  Hire Me
                 </a>
               </div>
             </div>

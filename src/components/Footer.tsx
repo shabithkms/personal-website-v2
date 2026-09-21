@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUp, Terminal, Github, Linkedin, Instagram, Mail, Phone } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Instagram, Mail, Phone } from "lucide-react";
 import profileData from "../data/profile.json";
 import socialData from "../data/social.json";
 import { WhatsAppIcon } from "./WhatsAppButton";
@@ -29,27 +29,22 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="py-12 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 relative overflow-hidden text-xs text-slate-600 dark:text-slate-400">
+    <footer className="py-10 border-t-2 border-ink dark:border-paper bg-paper dark:bg-ink relative overflow-hidden text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Brand */}
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400">
-            <Terminal className="w-4 h-4" />
-          </div>
-          <span className="font-bold text-sm tracking-wider text-slate-900 dark:text-slate-200">
-            {profileData.name}
-          </span>
-        </div>
+        <span className="font-mono font-bold text-sm tracking-tight text-ink dark:text-paper">
+          {profileData.name}
+        </span>
 
         {/* Social Links */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {socialData.map((social) => (
             <a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+              className="press-sm p-2 border-2 border-ink dark:border-paper text-ink dark:text-paper"
               title={social.name}
               aria-label={social.ariaLabel}
             >
@@ -60,14 +55,14 @@ export const Footer: React.FC = () => {
 
         {/* Dynamic Copyright & Back to Top */}
         <div className="flex items-center gap-4">
-          <span className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} Muhammed Shabith K.
+          <span className="font-mono text-ink/50 dark:text-paper/50 text-xs">
+            © {new Date().getFullYear()} {profileData.name}
           </span>
 
           <button
             onClick={scrollToTop}
             aria-label="Scroll back to top of page"
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all flex items-center gap-1.5 font-medium"
+            className="press-sm p-2.5 border-2 border-ink dark:border-paper text-ink dark:text-paper flex items-center gap-1.5 font-mono font-medium"
             title="Scroll to top"
           >
             <span>Top</span>

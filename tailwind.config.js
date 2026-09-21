@@ -5,62 +5,40 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+        ink: "#0b0b0c",
+        paper: "#f4f2ea",
+        accent: {
+          DEFAULT: "#d7ff3d",
+          dim: "#a8cc1f",
         },
+        signal: "#ff4d2e",
+      },
+      fontFamily: {
+        sans: ["'Space Grotesk'", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+      },
+      boxShadow: {
+        brutal: "6px 6px 0 0 var(--shadow-color)",
+        "brutal-sm": "4px 4px 0 0 var(--shadow-color)",
+        "brutal-lg": "10px 10px 0 0 var(--shadow-color)",
+        "brutal-press": "2px 2px 0 0 var(--shadow-color)",
+      },
+      borderRadius: {
+        none: "0px",
+        sm: "2px",
       },
       animation: {
-        "fade-in": "fadeIn 0.8s ease-out",
-        "fade-in-up": "fadeInUp 0.8s ease-out",
-        "fade-in-down": "fadeInDown 0.8s ease-out",
-        "slide-up": "slideUp 0.6s ease-out",
-        "slide-in-left": "slideInLeft 0.8s ease-out",
-        "slide-in-right": "slideInRight 0.8s ease-out",
-        float: "float 3s ease-in-out infinite",
-        "bounce-slow": "bounce 2s infinite",
-        "scale-in": "scaleIn 0.5s ease-out",
+        marquee: "marquee 28s linear infinite",
+        blink: "blink 1.1s steps(1) infinite",
       },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeInDown: {
-          "0%": { opacity: "0", transform: "translateY(-30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideUp: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        slideInLeft: {
-          "0%": { opacity: "0", transform: "translateX(-50px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        slideInRight: {
-          "0%": { opacity: "0", transform: "translateX(50px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        scaleIn: {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
+        blink: {
+          "0%, 49%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
         },
       },
     },
