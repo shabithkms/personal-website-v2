@@ -11,7 +11,7 @@ export const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M18.403 5.638A8.955 8.955 0 0012.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.2 4.488L3 21l4.704-1.233a8.941 8.941 0 004.348 1.127h.004c4.947 0 8.975-4.027 8.977-8.977a8.923 8.923 0 00-2.63-6.279zM12.056 19.38v-.001a7.442 7.442 0 01-3.791-1.042l-.272-.162-2.816.738.751-2.744-.177-.282a7.447 7.447 0 01-1.144-3.955c.002-4.114 3.35-7.461 7.464-7.461a7.42 7.42 0 015.277 2.188 7.42 7.42 0 012.185 5.278c-.002 4.114-3.35 7.462-7.477 7.462zm4.097-5.592c-.225-.113-1.332-.657-1.538-.732-.206-.075-.356-.113-.506.113-.15.225-.58.732-.711.882-.132.15-.263.169-.488.056-.225-.113-.951-.35-1.812-1.118-.67-.597-1.122-1.334-1.254-1.559-.131-.225-.014-.347.098-.459.101-.101.225-.263.338-.394.113-.131.15-.225.225-.375.075-.15.038-.282-.019-.394-.056-.113-.506-1.219-.694-1.669-.183-.438-.369-.378-.506-.385-.131-.007-.281-.009-.431-.009s-.394.056-.6.282c-.206.225-.788.769-.788 1.875 0 1.106.806 2.175.919 2.325.113.15 1.587 2.424 3.846 3.4 1.895.82 2.28.657 2.693.619.413-.038 1.332-.544 1.52-.1.069 1.88-.525.263-.788.075-.263.075-.375.113-.488z"
+      d="M18.403 5.633A8.919 8.919 0 0012.053 3c-4.948 0-8.976 4.027-8.978 8.977a8.958 8.958 0 001.2 4.488L3 21l4.65-1.219a8.966 8.966 0 004.4 1.121h.005c4.947 0 8.975-4.027 8.977-8.977a8.926 8.926 0 00-2.63-6.292zM12.053 19.681h-.003a7.445 7.445 0 01-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.448 7.448 0 01-1.141-3.971c0-4.114 3.349-7.462 7.465-7.462 1.994 0 3.87.778 5.281 2.191a7.424 7.424 0 012.184 5.281c-.002 4.114-3.351 7.462-7.468 7.462zm4.096-5.591c-.225-.113-1.327-.655-1.533-.73-.206-.075-.356-.112-.505.112-.15.225-.579.729-.709.879-.13.149-.261.168-.486.056-.225-.112-.947-.348-1.804-1.113-.667-.595-1.117-1.329-1.248-1.554-.13-.224-.014-.345.098-.457.101-.1.224-.261.336-.392.112-.13.149-.224.224-.374.075-.15.037-.28-.019-.393-.056-.112-.505-1.217-.692-1.667-.181-.435-.366-.377-.505-.383a9.65 9.65 0 00-.43-.008.826.826 0 00-.599.28c-.206.225-.785.767-.785 1.871s.804 2.171.916 2.321c.112.15 1.582 2.415 3.832 3.387.536.231.954.369 1.279.472.537.171 1.026.147 1.413.089.431-.064 1.327-.542 1.514-1.066.187-.524.187-.973.131-1.067-.056-.094-.207-.151-.43-.263z"
     />
   </svg>
 );
@@ -30,22 +30,20 @@ export const WhatsAppButton: React.FC = () => {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         title="Chat on WhatsApp"
-        initial={{ opacity: 0, scale: 0.5, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring" as const, stiffness: 200, damping: 20, delay: 0.5 }}
-        whileHover={{ scale: 1.05, y: -3 }}
-        whileTap={{ scale: 0.95 }}
-        className="group flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all duration-300 border border-emerald-300/40 cursor-pointer"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
+        className="press group flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 bg-[#d7ff3d] text-ink border-2 border-ink dark:border-paper cursor-pointer"
       >
         <div className="relative flex items-center justify-center">
-          <WhatsAppIcon className="w-6 h-6 text-white" />
-          <span className="absolute -top-1 -right-1 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          <WhatsAppIcon className="w-6 h-6" />
+          <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink dark:bg-paper opacity-60"></span>
+            <span className="relative inline-flex h-2.5 w-2.5 bg-ink dark:bg-paper border border-paper dark:border-ink"></span>
           </span>
         </div>
 
-        <span className="hidden sm:inline-block font-bold text-xs sm:text-sm tracking-wide text-white pr-1">
+        <span className="hidden sm:inline-block font-mono font-semibold text-xs tracking-wide uppercase pr-1">
           Chat on WhatsApp
         </span>
       </motion.a>

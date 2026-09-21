@@ -6,8 +6,8 @@ import { WhatsAppButton } from "./components/WhatsAppButton";
 import { ComponentSkeleton } from "./components/SkeletonLoader";
 
 // Lazy load heavy below-the-fold components to reduce initial JS payload
-const ParticleBackground = lazy(() =>
-  import("./components/ParticleBackground").then((m) => ({ default: m.ParticleBackground }))
+const GridBackground = lazy(() =>
+  import("./components/GridBackground").then((m) => ({ default: m.GridBackground }))
 );
 const About = lazy(() => import("./components/About").then((m) => ({ default: m.About })));
 const Skills = lazy(() => import("./components/Skills").then((m) => ({ default: m.Skills })));
@@ -43,7 +43,7 @@ function App() {
   // Observer for active section scrolling highlight
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "skills", "experience", "projects", "contact"];
+      const sections = ["home", "experience", "projects", "skills", "about", "contact"];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -64,13 +64,13 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-cyan-500 selection:text-black font-sans transition-colors duration-300">
+    <div className="relative min-h-screen bg-paper text-ink dark:bg-ink dark:text-paper selection:bg-accent selection:text-ink font-sans transition-colors duration-300">
       {/* Top Fluid Scroll Progress Bar */}
       <ScrollProgress />
 
-      {/* Lazy Loaded Interactive Canvas Background */}
+      {/* Lazy Loaded Backdrop */}
       <Suspense fallback={null}>
-        <ParticleBackground />
+        <GridBackground />
       </Suspense>
 
       {/* Navigation - Synchronous Critical Shell */}
@@ -82,12 +82,16 @@ function App() {
       />
 
       {/* Critical Above-the-fold Hero Renders Instantly */}
-      <main className="relative z-10 space-y-4">
+      <main className="relative z-10">
         <Hero />
 
-        {/* Deferred Below-the-fold Sections */}
+        {/* Deferred Below-the-fold Sections, in proof-first order */}
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>
-          <About />
+          <Experience />
+        </Suspense>
+
+        <Suspense fallback={<ComponentSkeleton height="h-64" />}>
+          <Projects />
         </Suspense>
 
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>
@@ -95,11 +99,7 @@ function App() {
         </Suspense>
 
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>
-          <Experience />
-        </Suspense>
-
-        <Suspense fallback={<ComponentSkeleton height="h-64" />}>
-          <Projects />
+          <About />
         </Suspense>
 
         <Suspense fallback={<ComponentSkeleton height="h-64" />}>
